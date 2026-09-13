@@ -1,10 +1,10 @@
 <div align="center">
 
-âš¡ AEGIS
+AEGIS
 
 Autonomous AI SRE / Self-Healing Cloud Engineer
 
-Observe â†’ Detect â†’ Diagnose â†’ Decide â†’ Remediate â†’ Verify â†’ Recover
+Observe -> Detect -> Diagnose -> Decide -> Remediate -> Verify -> Recover
 
 <p>
   <img src="https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white" />
@@ -18,96 +18,104 @@ Observe â†’ Detect â†’ Diagnose â†’ Decide â†’ Remediate â�
 <p>
   <img src="https://img.shields.io/badge/Precision-100%25-success?style=flat-square" />
   <img src="https://img.shields.io/badge/Recall-100%25-success?style=flat-square" />
+  <img src="https://img.shields.io/badge/F1-100%25-success?style=flat-square" />
   <img src="https://img.shields.io/badge/RCA_Accuracy-100%25-success?style=flat-square" />
   <img src="https://img.shields.io/badge/Recovery-100%25-success?style=flat-square" />
   <img src="https://img.shields.io/badge/False_Positive_Rate-0%25-blue?style=flat-square" />
 </p>
 
-An autonomous reliability control plane that goes beyond monitoring and actively repairs failing services.
+An autonomous reliability control plane that goes beyond monitoring and actively attempts to repair failing services.
 
 </div>
 
-ðŸš€ What is AEGIS?
+What is AEGIS?
 
 Traditional observability platforms tell engineers that something is broken.
 
 AEGIS attempts to fix it.
 
-It continuously gathers operational evidence, identifies likely root causes, evaluates whether remediation is safe, executes an approved recovery action, verifies that the service actually recovered, and records the incident.
+AEGIS continuously gathers operational evidence, identifies likely root causes, evaluates whether remediation is safe, executes an approved recovery action, verifies that the service actually recovered, and records the incident.
 
 Observe
-   â†“
+  |
+  v
 Detect
-   â†“
+  |
+  v
 Collect Evidence
-   â†“
+  |
+  v
 Root Cause Analysis
-   â†“
+  |
+  v
 Policy Decision
-   â†“
+  |
+  v
 Remediation
-   â†“
+  |
+  v
 Recovery Verification
-   â†“
+  |
+  v
 Resolve / Re-diagnose
 
 The core recovery loop is deterministic and does not depend on a paid LLM API.
 
-âœ¨ Core Capabilities
+Core Capabilities
 
 Capability
 
 Description
 
-ðŸ“¡ Live Monitoring
+Live Monitoring
 
-Tracks service health, request rate, error rate and latency
+Tracks service health, request rate, error rate, and latency
 
-ðŸ“Š Prometheus Telemetry
+Prometheus Telemetry
 
-Queries real operational metrics from Prometheus
+Queries operational metrics from Prometheus
 
-ðŸ§  Root Cause Analysis
+Root Cause Analysis
 
 Evidence-driven deterministic failure diagnosis
 
-ðŸš¨ Incident Engine
+Incident Engine
 
-Creates, deduplicates and resolves incidents
+Creates, deduplicates, and resolves incidents
 
-ðŸ›¡ï¸ Policy Engine
+Policy Engine
 
-Controls which remediation actions can execute autonomously
+Controls which remediation actions may execute autonomously
 
-ðŸ”§ Self-Healing
+Self-Healing
 
-Automatically restarts failed or degraded Docker services
+Automatically restarts supported failed or degraded Docker services
 
-âœ… Recovery Verification
+Recovery Verification
 
 Confirms remediation actually restored service health
 
-ðŸ” Bounded Retry
+Bounded Retry
 
-Re-collects evidence and re-diagnoses if recovery fails
+Re-collects evidence and re-diagnoses when recovery fails
 
-ðŸ’¥ Chaos Engineering
+Chaos Engineering
 
-Injects latency, errors, hangs and service failures
+Injects latency, errors, hangs, and service failures
 
-ðŸ“ Postmortems
+Postmortems
 
 Generates incident recovery records
 
-ðŸ“ˆ Benchmarking
+Benchmarking
 
-Measures detection, RCA and recovery performance
+Measures detection, RCA, and recovery performance
 
-ðŸ–¥ï¸ SRE Dashboard
+SRE Dashboard
 
 Live Next.js command center with WebSocket telemetry
 
-ðŸ§° Tech Stack
+Tech Stack
 
 <div align="center">
 
@@ -117,11 +125,11 @@ Technologies
 
 Frontend
 
-Next.js Â· TypeScript Â· Tailwind CSS Â· Recharts Â· Lucide
+Next.js, TypeScript, Tailwind CSS, Recharts, Lucide
 
 Backend
 
-Python Â· FastAPI Â· Uvicorn
+Python, FastAPI, Uvicorn
 
 Observability
 
@@ -129,7 +137,7 @@ Prometheus
 
 Infrastructure
 
-Docker Â· Docker Compose
+Docker, Docker Compose
 
 Testing
 
@@ -137,29 +145,29 @@ Pytest
 
 Communication
 
-REST Â· WebSockets
+REST, WebSockets
 
 Reliability Logic
 
-Statistical detection Â· Rule-based RCA Â· Policy engine
+Statistical detection, rule-based RCA, policy engine
 
 </div>
 
-ðŸ—ï¸ Architecture
+Architecture
 
 flowchart TD
-    UI["ðŸ–¥ï¸ Next.js SRE Dashboard"]
-    API["âš¡ FastAPI Control Plane"]
-    EVIDENCE["ðŸ”Ž Evidence Collector"]
-    RCA["ðŸ§  RCA Engine"]
-    INCIDENT["ðŸš¨ Incident Manager"]
-    POLICY["ðŸ›¡ï¸ Policy Engine"]
-    REMEDIATION["ðŸ”§ Remediation Engine"]
-    VERIFY["âœ… Recovery Verifier"]
-    POST["ðŸ“ Postmortem"]
-    PROM["ðŸ“Š Prometheus"]
-    ORDERS["ðŸ“¦ Orders Service"]
-    DOCKER["ðŸ³ Docker Engine"]
+    UI["Next.js SRE Dashboard"]
+    API["FastAPI Control Plane"]
+    EVIDENCE["Evidence Collector"]
+    RCA["RCA Engine"]
+    INCIDENT["Incident Manager"]
+    POLICY["Policy Engine"]
+    REMEDIATION["Remediation Engine"]
+    VERIFY["Recovery Verifier"]
+    POST["Postmortem"]
+    PROM["Prometheus"]
+    ORDERS["Orders Service"]
+    DOCKER["Docker Engine"]
 
     UI -->|REST + WebSocket| API
     API --> EVIDENCE
@@ -177,23 +185,27 @@ flowchart TD
     VERIFY -->|Still Unhealthy| EVIDENCE
     INCIDENT --> POST
 
-ðŸ”„ Autonomous Recovery Lifecycle
+Detailed system documentation is available in docs/ARCHITECTURE.md.
 
-Observe â€” collect service health, Docker state, request rate, error rate, latency and recent logs.
+Autonomous Recovery Lifecycle
 
-Diagnose â€” determine the most likely failure with confidence, severity, reasoning and recommended action.
+Observe - collect service health, Docker state, request rate, error rate, latency, and recent logs.
 
-Decide â€” evaluate the action against explicit safety policy.
+Diagnose - determine the most likely failure with confidence, severity, reasoning, and a recommended action.
 
-Remediate â€” execute an allowed recovery action.
+Decide - evaluate the recommended action against explicit safety policy.
 
-Verify â€” confirm service reachability, HTTP status and response latency.
+Remediate - execute an allowed recovery action.
 
-Retry if needed â€” collect fresh evidence and re-run RCA within a bounded attempt limit.
+Verify - confirm service reachability, HTTP status, and response latency.
 
-Resolve â€” close the incident and persist a postmortem.
+Retry if needed - collect fresh evidence and re-run RCA within a bounded attempt limit.
 
-ðŸ§  Root-Cause Classes
+Resolve - close the incident and persist a postmortem.
+
+Root-Cause Classes
+
+AEGIS currently identifies:
 
 CONTAINER_DOWN
 APPLICATION_UNREACHABLE
@@ -204,7 +216,7 @@ APPLICATION_LATENCY_DEGRADATION
 NO_TRAFFIC
 NO_ACTIVE_FAILURE
 
-Example:
+Example diagnosis:
 
 {
   "root_cause": "APPLICATION_LATENCY_DEGRADATION",
@@ -213,29 +225,29 @@ Example:
   "recommended_action": "RESTART_CONTAINER"
 }
 
-ðŸ›¡ï¸ Safety-First Autonomy
+Safety-First Autonomy
 
-AEGIS does not blindly execute every recommended action.
+AEGIS separates diagnosis from permission to execute an action.
 
 Risk Level
 
 Autonomous Behaviour
 
-ðŸŸ¢ LOW
+LOW
 
-Can auto-execute with sufficient confidence
+Can auto-execute when confidence is sufficient
 
-ðŸŸ¡ MEDIUM
+MEDIUM
 
 Requires human approval
 
-ðŸ”´ HIGH
+HIGH
 
 Blocked from autonomous execution
 
-This keeps diagnosis, recommendation and permission to execute as separate concerns.
+This prevents the remediation engine from blindly executing every recommendation.
 
-ðŸ’¥ Chaos Engineering Laboratory
+Chaos Engineering Laboratory
 
 The demo environment supports controlled failure injection.
 
@@ -243,33 +255,35 @@ Scenario
 
 Failure
 
-ðŸŸ¢ Healthy Control
+Healthy Control
 
 Normal system behaviour
 
-ðŸŸ  Latency Degradation
+Latency Degradation
 
 Artificial request delay
 
-ðŸ”´ High Error Rate
+High Error Rate
 
 Elevated HTTP 5xx responses
 
-ðŸ”´ Health Failure
+Health Endpoint Failure
 
-/health returns failure
+Health endpoint returns failure
 
-ðŸŸ£ Service Hang
+Service Hang
 
 Health request becomes extremely slow
 
-âš« Container Down
+Container Down
 
 Entire service container stops
 
-ðŸ“Š Verified Benchmark
+These scenarios exercise the complete reliability loop rather than isolated functions.
 
-AEGIS was evaluated using a six-scenario autonomous SRE benchmark.
+Verified Benchmark
+
+AEGIS was evaluated using a controlled six-scenario autonomous SRE benchmark.
 
 Metric
 
@@ -339,59 +353,59 @@ Recovery
 
 Healthy Control
 
-âœ…
+PASS
 
-âœ…
+PASS
 
-âœ…
+PASS
 
 Latency Degradation
 
-âœ…
+PASS
 
-âœ…
+PASS
 
-âœ…
+PASS
 
 High Error Rate
 
-âœ…
+PASS
 
-âœ…
+PASS
 
-âœ…
+PASS
 
 Health Endpoint Failure
 
-âœ…
+PASS
 
-âœ…
+PASS
 
-âœ…
+PASS
 
 Service Hang
 
-âœ…
+PASS
 
-âœ…
+PASS
 
-âœ…
+PASS
 
 Container Down
 
-âœ…
+PASS
 
-âœ…
+PASS
 
-âœ…
+PASS
 
 These results describe the included controlled six-scenario benchmark and are not production-wide reliability guarantees.
 
-Reports are persisted under:
+Benchmark reports are persisted under:
 
 benchmarks/results/
 
-ðŸ–¥ï¸ SRE Command Center
+SRE Command Center
 
 The dashboard provides a live operational view of:
 
@@ -405,9 +419,7 @@ latency
 
 active incidents
 
-RCA diagnosis
-
-severity
+RCA diagnosis and severity
 
 live telemetry graph
 
@@ -419,7 +431,7 @@ incident history
 
 Live updates are delivered through WebSockets from the AEGIS control plane.
 
-ðŸŽ¬ Demo Flow
+Demo Flow
 
 1. Open the dashboard
 2. Generate normal traffic
@@ -428,15 +440,15 @@ Live updates are delivered through WebSockets from the AEGIS control plane.
 5. Watch telemetry degrade
 6. Trigger the autonomous cycle
 7. AEGIS performs RCA
-8. Policy engine approves remediation
+8. Policy engine approves an allowed remediation
 9. Docker service is restarted
 10. Recovery verifier confirms health
 11. Dashboard returns to healthy
 12. Incident is resolved
 
-The latency scenario is especially visual because the graph spikes and then drops back toward baseline after recovery.
+The latency scenario is particularly visual because the telemetry graph rises sharply and returns toward baseline after recovery.
 
-ðŸ³ Run the Complete Stack
+Run the Complete Stack
 
 Requirements
 
@@ -458,23 +470,23 @@ Service
 
 Address
 
-ðŸ–¥ï¸ AEGIS Dashboard
+AEGIS Dashboard
 
 http://localhost:3000
 
-âš¡ AEGIS Control Plane
+AEGIS Control Plane
 
 http://localhost:8080
 
-ðŸ“¦ Orders Demo Service
+Orders Demo Service
 
 http://localhost:8001
 
-ðŸ“Š Prometheus
+Prometheus
 
 http://localhost:9090
 
-ðŸ§ª Tests
+Tests
 
 Install development dependencies:
 
@@ -488,45 +500,42 @@ Current automated test suite:
 
 9 passed
 
-ðŸ“ˆ Run the Benchmark
+Run the Benchmark
 
 Windows PowerShell
 
 $env:PYTHONPATH="."
 python benchmarks\evaluate_aegis.py
 
-Each benchmark execution creates a timestamped JSON report under:
+Each execution creates a timestamped JSON report under benchmarks/results/.
 
-benchmarks/results/
-
-ðŸ“ Repository Structure
+Repository Structure
 
 aegis/
-â”‚
-â”œâ”€â”€ backend/
-â”‚   â”œâ”€â”€ api/
-â”‚   â”œâ”€â”€ detection/
-â”‚   â”œâ”€â”€ incidents/
-â”‚   â”œâ”€â”€ monitoring/
-â”‚   â”œâ”€â”€ policies/
-â”‚   â”œâ”€â”€ rca/
-â”‚   â”œâ”€â”€ remediation/
-â”‚   â””â”€â”€ verification/
-â”‚
-â”œâ”€â”€ benchmarks/
-â”‚   â””â”€â”€ results/
-â”œâ”€â”€ chaos/
-â”œâ”€â”€ demo-system/
-â”‚   â””â”€â”€ orders/
-â”œâ”€â”€ docs/
-â”‚   â””â”€â”€ ARCHITECTURE.md
-â”œâ”€â”€ frontend/
-â”œâ”€â”€ observability/
-â”‚   â””â”€â”€ prometheus/
-â”œâ”€â”€ tests/
-â””â”€â”€ docker-compose.yml
+|-- backend/
+|   |-- api/
+|   |-- detection/
+|   |-- incidents/
+|   |-- monitoring/
+|   |-- policies/
+|   |-- rca/
+|   |-- remediation/
+|   `-- verification/
+|-- benchmarks/
+|   `-- results/
+|-- chaos/
+|-- demo-system/
+|   `-- orders/
+|-- docs/
+|   `-- ARCHITECTURE.md
+|-- frontend/
+|-- observability/
+|   `-- prometheus/
+|-- tests/
+|-- docker-compose.yml
+`-- README.md
 
-ðŸ§© Design Principles
+Design Principles
 
 Evidence Before Action
 
@@ -542,13 +551,13 @@ Remediation recommendations pass through explicit policy checks.
 
 Verify Every Recovery
 
-Executing a restart is not considered success until the service is healthy again.
+Executing a command is not considered success until service health is restored.
 
 Measure, Don't Just Demo
 
-AEGIS contains a benchmark suite for precision, recall, F1, RCA accuracy, false-positive rate, MTTD, MTTR and recovery success.
+AEGIS includes a benchmark suite for precision, recall, F1, RCA accuracy, false-positive rate, MTTD, MTTR, and recovery success.
 
-ðŸ—ºï¸ Future Roadmap
+Future Roadmap
 
 OpenTelemetry distributed tracing
 
@@ -574,15 +583,15 @@ Larger chaos benchmark suite
 
 Long-running reliability evaluation
 
-ðŸ” Security Note
+Security Note
 
 The local demo mounts the Docker socket into the backend so AEGIS can execute container-level remediation.
 
-Docker socket access is highly privileged. For production, this should be replaced with a restricted execution agent, scoped service account, or dedicated remediation API.
+Docker socket access is highly privileged. A production architecture should replace this with a restricted execution agent, scoped service account, or dedicated remediation API.
 
-ðŸ’¡ Why This Project Is Different
+Why This Project Is Different
 
-AEGIS is not:
+AEGIS is not just:
 
 a monitoring dashboard
 
@@ -595,23 +604,28 @@ a static DevOps visualization
 It implements a real autonomous feedback loop:
 
 Detection
-    â†“
+   |
+   v
 Diagnosis
-    â†“
+   |
+   v
 Safety Decision
-    â†“
+   |
+   v
 Real Infrastructure Action
-    â†“
+   |
+   v
 Recovery Verification
-    â†“
+   |
+   v
 Measurement
 
 <div align="center">
 
-âš¡ AEGIS
+AEGIS
 
 Autonomous reliability engineering from detection to verified recovery.
 
-Python Â· FastAPI Â· Next.js Â· TypeScript Â· Prometheus Â· Docker
+Python | FastAPI | Next.js | TypeScript | Prometheus | Docker
 
 </div>
