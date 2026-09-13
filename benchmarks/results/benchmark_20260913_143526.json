@@ -1,0 +1,98 @@
+{
+  "generated_at": "2026-09-13T14:35:26",
+  "total_scenarios": 6,
+  "confusion_matrix": {
+    "true_positive": 5,
+    "false_positive": 0,
+    "true_negative": 1,
+    "false_negative": 0
+  },
+  "precision_percent": 100.0,
+  "recall_percent": 100.0,
+  "f1_percent": 100.0,
+  "rca_accuracy_percent": 100.0,
+  "recovery_success_percent": 100.0,
+  "false_positive_rate_percent": 0.0,
+  "average_mttd_seconds": 5.621,
+  "average_mttr_seconds": 10.03,
+  "results": [
+    {
+      "scenario": "healthy_control",
+      "expected_failure": false,
+      "failure_detected": false,
+      "detection_correct": true,
+      "expected_root_cause": "NO_ACTIVE_FAILURE",
+      "predicted_root_cause": "NO_ACTIVE_FAILURE",
+      "rca_correct": true,
+      "engine_status": "HEALTHY",
+      "recovery_success": true,
+      "mttd_seconds": null,
+      "mttr_seconds": null
+    },
+    {
+      "scenario": "latency_degradation",
+      "expected_failure": true,
+      "failure_detected": true,
+      "detection_correct": true,
+      "expected_root_cause": "APPLICATION_LATENCY_DEGRADATION",
+      "predicted_root_cause": "APPLICATION_LATENCY_DEGRADATION",
+      "rca_correct": true,
+      "engine_status": "RECOVERED",
+      "recovery_success": true,
+      "mttd_seconds": 18.32,
+      "mttr_seconds": 23.002
+    },
+    {
+      "scenario": "high_error_rate",
+      "expected_failure": true,
+      "failure_detected": true,
+      "detection_correct": true,
+      "expected_root_cause": "HIGH_APPLICATION_ERROR_RATE",
+      "predicted_root_cause": "HIGH_APPLICATION_ERROR_RATE",
+      "rca_correct": true,
+      "engine_status": "RECOVERED",
+      "recovery_success": true,
+      "mttd_seconds": 7.105,
+      "mttr_seconds": 10.401
+    },
+    {
+      "scenario": "health_endpoint_failure",
+      "expected_failure": true,
+      "failure_detected": true,
+      "detection_correct": true,
+      "expected_root_cause": "APPLICATION_HEALTH_FAILURE",
+      "predicted_root_cause": "APPLICATION_HEALTH_FAILURE",
+      "rca_correct": true,
+      "engine_status": "RECOVERED",
+      "recovery_success": true,
+      "mttd_seconds": 0.249,
+      "mttr_seconds": 3.366
+    },
+    {
+      "scenario": "service_hang",
+      "expected_failure": true,
+      "failure_detected": true,
+      "detection_correct": true,
+      "expected_root_cause": "SERVICE_HANG_OR_LATENCY",
+      "predicted_root_cause": "SERVICE_HANG_OR_LATENCY",
+      "rca_correct": true,
+      "engine_status": "RECOVERED",
+      "recovery_success": true,
+      "mttd_seconds": 2.227,
+      "mttr_seconds": 10.083
+    },
+    {
+      "scenario": "container_down",
+      "expected_failure": true,
+      "failure_detected": true,
+      "detection_correct": true,
+      "expected_root_cause": "CONTAINER_DOWN",
+      "predicted_root_cause": "CONTAINER_DOWN",
+      "rca_correct": true,
+      "engine_status": "RECOVERED",
+      "recovery_success": true,
+      "mttd_seconds": 0.203,
+      "mttr_seconds": 3.297
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+﻿services:
+  orders:
+    build:
+      context: ./demo-system/orders
+    container_name: aegis-orders
+    ports:
+      - "8001:8000"
+    restart: "no"
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: aegis-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./observability/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    depends_on:
+      - orders
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: aegis-backend
+    ports:
+      - "8080:8080"
+    environment:
+      PROMETHEUS_URL: http://prometheus:9090
+      ORDERS_URL: http://orders:8000
+      HEALTH_URL: http://orders:8000/health
+      CONTAINER_NAME: aegis-orders
+      SERVICE_NAME: orders
+      MAX_REMEDIATION_ATTEMPTS: "2"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./backend/incidents/data:/app/backend/incidents/data
+    depends_on:
+      - orders
+      - prometheus
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        NEXT_PUBLIC_AEGIS_API_URL: http://localhost:8080
+        NEXT_PUBLIC_AEGIS_WS_URL: ws://localhost:8080/ws/live
+    container_name: aegis-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
